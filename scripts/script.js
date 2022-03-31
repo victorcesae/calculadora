@@ -37,7 +37,7 @@ function onClickButton() {
 
   switch (this.value) {
     case "+":
-      valueBefore = parseFloat(result.value);
+      valueBefore = result.value;
       if (valueNow != '') {
         console.log(valueNow)
         calculate()
@@ -60,7 +60,7 @@ function onClickButton() {
         calculate()
         valueNow = "";
       }
-      valueBefore = parseFloat(result.value);
+      valueBefore = result.value;
       if (basicOperator("-") == 'hasOperator') {
         result.value = result.value.replace(result.value[result.value.length - 1], this.value)
       } else if (basicOperator("-") == 'mathWithNegatives') {
@@ -78,7 +78,7 @@ function onClickButton() {
         calculate()
         valueNow = "";
       }
-      valueBefore = parseFloat(result.value);
+      valueBefore = result.value;
       if (basicOperator("*") == 'hasOperator') {
         result.value = result.value.replace(result.value[result.value.length - 1], this.value)
       } else if (basicOperator("*") == 'mathWithNegatives') {
@@ -96,7 +96,7 @@ function onClickButton() {
         calculate()
         valueNow = "";
       }
-      valueBefore = parseFloat(result.value);
+      valueBefore = result.value;
       if (basicOperator("/") == 'hasOperator') {
         result.value = result.value.replace(result.value[result.value.length - 1], this.value)
         valueNow = "";
@@ -136,7 +136,7 @@ document.addEventListener('keypress', (event) => {
   }
   switch (y) {
     case "+":
-      valueBefore = parseFloat(result.value);
+      valueBefore = result.value;
       if (valueNow != '') {
         console.log(valueNow)
         calculate()
@@ -159,7 +159,7 @@ document.addEventListener('keypress', (event) => {
         calculate()
         valueNow = "";
       }
-      valueBefore = parseFloat(result.value);
+      valueBefore = result.value;
       if (basicOperator("-") == 'hasOperator') {
         result.value = result.value.replace(result.value[result.value.length - 1], y)
       } else if (basicOperator("-") == 'mathWithNegatives') {
@@ -177,7 +177,7 @@ document.addEventListener('keypress', (event) => {
         calculate()
         valueNow = "";
       }
-      valueBefore = parseFloat(result.value);
+      valueBefore = result.value;
       if (basicOperator("*") == 'hasOperator') {
         result.value = result.value.replace(result.value[result.value.length - 1], y)
       } else if (basicOperator("*") == 'mathWithNegatives') {
@@ -195,7 +195,7 @@ document.addEventListener('keypress', (event) => {
         calculate()
         valueNow = "";
       }
-      valueBefore = parseFloat(result.value);
+      valueBefore = result.value;
       if (basicOperator("/") == 'hasOperator') {
         result.value = result.value.replace(result.value[result.value.length - 1], y)
         valueNow = "";
@@ -228,20 +228,21 @@ function calculate() {
   if (operator != "") {
     switch (operator) {
       case "+":
-        result.value = (parseFloat(valueBefore) + parseFloat(valueNow)).toFixed(3);
+        result.value = (parseFloat(valueBefore.replace(',','.')) + parseFloat(valueNow.replace(',','.'))).toFixed(3);
         break;
       case "-":
-        result.value = (parseFloat(valueBefore) - parseFloat(valueNow)).toFixed(3);
+        result.value = (parseFloat(valueBefore.replace(',','.')) - parseFloat(valueNow.replace(',','.'))).toFixed(3);
         break;
       case "*":
-        result.value = (parseFloat(valueBefore) * parseFloat(valueNow)).toFixed(3);
+        result.value = (parseFloat(valueBefore.replace(',','.')) * parseFloat(valueNow.replace(',','.'))).toFixed(3);
         break;
       case "/":
-        result.value = (parseFloat(valueBefore) / parseFloat(valueNow)).toFixed(3);
+        result.value = (parseFloat(valueBefore.replace(',','.')) / parseFloat(valueNow.replace(',','.'))).toFixed(3);
         break;
     }
     operator = "";
     valueNow = ''
+    result.value = result.value.replace('.',',')
     return;
   }
   document.querySelector(".enter").focus()
