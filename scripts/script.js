@@ -14,7 +14,7 @@ function basicOperator(char) {
   return 'operatorAssigned';
 }
 /*================ CHECK IF THE CARACTERES IS ALLOWED ===================*/
-var allowedChars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "*", "/", '.'];
+var allowedChars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "*", "/", '.',','];
 function isAllowed(string) {
   var isOk = 0;
   for (let i = 0; i < string.length; i++) {
@@ -39,7 +39,7 @@ function onClickButton() {
     case "+":
       valueBefore = result.value;
       if (valueNow != '') {
-        console.log(valueNow)
+        
         calculate()
         valueNow = "";
       }
@@ -56,7 +56,7 @@ function onClickButton() {
       break;
     case "-":
       if (valueNow != '') {
-        console.log(valueNow)
+        
         calculate()
         valueNow = "";
       }
@@ -74,7 +74,7 @@ function onClickButton() {
       break;
     case "*":
       if (valueNow != '') {
-        console.log(valueNow)
+        
         calculate()
         valueNow = "";
       }
@@ -92,7 +92,7 @@ function onClickButton() {
       break;
     case "/":
       if (valueNow != '') {
-        console.log(valueNow)
+        
         calculate()
         valueNow = "";
       }
@@ -138,7 +138,7 @@ document.addEventListener('keypress', (event) => {
     case "+":
       valueBefore = result.value;
       if (valueNow != '') {
-        console.log(valueNow)
+        
         calculate()
         valueNow = "";
       }
@@ -155,7 +155,7 @@ document.addEventListener('keypress', (event) => {
       break;
     case "-":
       if (valueNow != '') {
-        console.log(valueNow)
+        
         calculate()
         valueNow = "";
       }
@@ -173,7 +173,7 @@ document.addEventListener('keypress', (event) => {
       break;
     case "*":
       if (valueNow != '') {
-        console.log(valueNow)
+        
         calculate()
         valueNow = "";
       }
@@ -191,7 +191,7 @@ document.addEventListener('keypress', (event) => {
       break;
     case "/":
       if (valueNow != '') {
-        console.log(valueNow)
+        
         calculate()
         valueNow = "";
       }
@@ -242,6 +242,7 @@ function calculate() {
     }
     operator = "";
     valueNow = ''
+    result.value = parseFloat(result.value)
     result.value = result.value.replace('.',',')
     return;
   }
