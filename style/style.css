@@ -76,6 +76,7 @@ input.result {
   color: #e6d5b8;
   padding: 0.5rem;
   font-size: 45px;
+  overflow-x: auto;
 }
 @media (min-width: 1200px) {
   .calculadora {

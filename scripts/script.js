@@ -3,7 +3,15 @@ const result = document.querySelector(".result");
 /*================ SET THE OPERATOR OF THE CALC ===================*/
 var operator = "";
 function basicOperator(char) {
+  if (operator != '') {
+    if ((char == '-' || char == '+') && (operator == '*' || char == '/')) {
+      return 'mathWithNegatives'
+    }
+    operator = char;
+    return 'hasOperator';
+  }
   operator = char;
+  return 'operatorAssigned';
 }
 /*================ CHECK IF THE CARACTERES IS ALLOWED ===================*/
 var allowedChars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "*", "/", '.'];
@@ -30,27 +38,76 @@ function onClickButton() {
   switch (this.value) {
     case "+":
       valueBefore = parseFloat(result.value);
-      basicOperator("+");
-      result.value = result.value + this.value;
-      valueNow = "";
+      if (valueNow != '') {
+        console.log(valueNow)
+        calculate()
+        valueNow = "";
+      }
+      if (basicOperator("+") == 'hasOperator') {
+        result.value = result.value.replace(result.value[result.value.length - 1], this.value)
+      } else if (basicOperator("+") == 'mathWithNegatives') {
+        result.value = result.value + this.value;
+        valueNow = valueNow + this.value;
+      }
+      else {
+        result.value = result.value + this.value;
+        valueNow = "";
+      }
       break;
     case "-":
+      if (valueNow != '') {
+        console.log(valueNow)
+        calculate()
+        valueNow = "";
+      }
       valueBefore = parseFloat(result.value);
-      basicOperator("-");
-      result.value = result.value + this.value;
-      valueNow = "";
+      if (basicOperator("-") == 'hasOperator') {
+        result.value = result.value.replace(result.value[result.value.length - 1], this.value)
+      } else if (basicOperator("-") == 'mathWithNegatives') {
+        result.value = result.value + this.value;
+        valueNow = valueNow + this.value;
+      }
+      else {
+        result.value = result.value + this.value;
+        valueNow = "";
+      }
       break;
     case "*":
+      if (valueNow != '') {
+        console.log(valueNow)
+        calculate()
+        valueNow = "";
+      }
       valueBefore = parseFloat(result.value);
-      basicOperator("*");
-      result.value = result.value + this.value;
-      valueNow = "";
+      if (basicOperator("*") == 'hasOperator') {
+        result.value = result.value.replace(result.value[result.value.length - 1], this.value)
+      } else if (basicOperator("*") == 'mathWithNegatives') {
+        result.value = result.value + this.value;
+        valueNow = valueNow + this.value;
+      }
+      else {
+        result.value = result.value + this.value;
+        valueNow = "";
+      }
       break;
     case "/":
+      if (valueNow != '') {
+        console.log(valueNow)
+        calculate()
+        valueNow = "";
+      }
       valueBefore = parseFloat(result.value);
-      basicOperator("/");
-      result.value = result.value + this.value;
-      valueNow = "";
+      if (basicOperator("/") == 'hasOperator') {
+        result.value = result.value.replace(result.value[result.value.length - 1], this.value)
+        valueNow = "";
+      } else if (basicOperator("/") == 'mathWithNegatives') {
+        result.value = result.value + this.value;
+        valueNow = valueNow + this.value;
+      }
+      else {
+        result.value = result.value + this.value;
+        valueNow = "";
+      }
       break;
     default:
       if (isAllowed(this.value) == false && this.value != '') {
@@ -58,10 +115,110 @@ function onClickButton() {
         return;
       }
       result.value = result.value + this.value;
-      valueNow = valueNow + this.value;
+      if (operator != '') {
+        valueNow = valueNow + this.value;
+      }
       break;
   }
 }
+/*============= ON KEY PRASS PASS VALUE TO BEFORE AND NOW BUTTONS TO EXECUTE CALCULATE FUNCTION ====================*/
+document.addEventListener('keypress', (event) => {
+  document.querySelector(".enter").focus()
+  var x = event.keyCode;         // Obtém o valor Unicode (decimal)
+  var y = String.fromCharCode(x);
+  console.log(x)
+  if (x == 13) {
+    document.querySelector(".enter").focus()
+    return;
+  }
+  if (x == 8 || x == 46) {
+    location.reload()
+  }
+  switch (y) {
+    case "+":
+      valueBefore = parseFloat(result.value);
+      if (valueNow != '') {
+        console.log(valueNow)
+        calculate()
+        valueNow = "";
+      }
+      if (basicOperator("+") == 'hasOperator') {
+        result.value = result.value.replace(result.value[result.value.length - 1], y)
+      } else if (basicOperator("+") == 'mathWithNegatives') {
+        result.value = result.value + y;
+        valueNow = valueNow + y;
+      }
+      else {
+        result.value = result.value + y;
+        valueNow = "";
+      }
+      break;
+    case "-":
+      if (valueNow != '') {
+        console.log(valueNow)
+        calculate()
+        valueNow = "";
+      }
+      valueBefore = parseFloat(result.value);
+      if (basicOperator("-") == 'hasOperator') {
+        result.value = result.value.replace(result.value[result.value.length - 1], y)
+      } else if (basicOperator("-") == 'mathWithNegatives') {
+        result.value = result.value + y;
+        valueNow = valueNow + y;
+      }
+      else {
+        result.value = result.value + y;
+        valueNow = "";
+      }
+      break;
+    case "*":
+      if (valueNow != '') {
+        console.log(valueNow)
+        calculate()
+        valueNow = "";
+      }
+      valueBefore = parseFloat(result.value);
+      if (basicOperator("*") == 'hasOperator') {
+        result.value = result.value.replace(result.value[result.value.length - 1], y)
+      } else if (basicOperator("*") == 'mathWithNegatives') {
+        result.value = result.value + y;
+        valueNow = valueNow + y;
+      }
+      else {
+        result.value = result.value + y;
+        valueNow = "";
+      }
+      break;
+    case "/":
+      if (valueNow != '') {
+        console.log(valueNow)
+        calculate()
+        valueNow = "";
+      }
+      valueBefore = parseFloat(result.value);
+      if (basicOperator("/") == 'hasOperator') {
+        result.value = result.value.replace(result.value[result.value.length - 1], y)
+        valueNow = "";
+      } else if (basicOperator("/") == 'mathWithNegatives') {
+        result.value = result.value + y;
+        valueNow = valueNow + y;
+      }
+      else {
+        result.value = result.value + y;
+        valueNow = "";
+      }
+      break;
+    default:
+      if (isAllowed(y) == false && y != '') {
+        return;
+      }
+      result.value = result.value + y;
+      if (operator != '') {
+        valueNow = valueNow + y;
+      }
+      break;
+  }
+})
 /*================ MAKE THE MATH ===================*/
 function calculate() {
   if (isAllowed(result.value) == false) {
@@ -71,21 +228,23 @@ function calculate() {
   if (operator != "") {
     switch (operator) {
       case "+":
-        result.value = parseFloat(valueBefore) + parseFloat(valueNow);
+        result.value = (parseFloat(valueBefore) + parseFloat(valueNow)).toFixed(3);
         break;
       case "-":
-        result.value = parseFloat(valueBefore) - parseFloat(valueNow);
+        result.value = (parseFloat(valueBefore) - parseFloat(valueNow)).toFixed(3);
         break;
       case "*":
-        result.value = parseFloat(valueBefore) * parseFloat(valueNow);
+        result.value = (parseFloat(valueBefore) * parseFloat(valueNow)).toFixed(3);
         break;
       case "/":
-        result.value = parseFloat(valueBefore) / parseFloat(valueNow);
+        result.value = (parseFloat(valueBefore) / parseFloat(valueNow)).toFixed(3);
         break;
     }
-    basicOperator("");
+    operator = "";
+    valueNow = ''
     return;
   }
+  document.querySelector(".enter").focus()
   alert('Sem nenhum operador registrado!')
   result.value = result.value;
 }
@@ -94,3 +253,4 @@ const calc = document.querySelectorAll(".btn");
 calc.forEach((element) => {
   element.addEventListener("click", onClickButton);
 });
+
