@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <div class="main">
+        <div class="calculadora">
+            <h1>Calculadora</h1>
+            <div class="calcular">
+                <div class="row one">
+                    <input type="text" name="result" class="result" disabled>
+                    <div class="text"><button class="clear" onclick="location.reload()">C</button></div>
+                </div>
+                <div class="row two">
+                    <div class="text"><button class="btn" value="9">9</button></div>
+                    <div class="text"><button class="btn" value="8">8</button></div>
+                    <div class="text"><button class="btn" value="7">7</button></div>
+                    <div class="text"><button class="btn" value="+" onclick="basicOperator('+')">+</button></div>
+                </div>
+                <div class="row three">
+                    <div class="text"><button class="btn" value="6">6</button></div>
+                    <div class="text"><button class="btn" value="5">5</button></div>
+                    <div class="text"><button class="btn" value="4">4</button></div>
+                    <div class="text"><button class="btn" value="-" onclick="basicOperator('-')">-</button></div>
+                </div>
+                
+                <div class="row four">
+                    <div class="text"><button class="btn" value="3">3</button></div>
+                    <div class="text"><button class="btn" value="2">2</button></div>
+                    <div class="text"><button class="btn" value="1">1</button></div>
+                    <div class="text"><button class="btn" value="*" onclick="basicOperator('*')">*</button></div>
+                </div>
+                <div class="row five">
+                    <div class="text"><button class="btn" value="0">0</button></div>
+                    <div class="text"><button class="btn" value=".">.</button></div>
+                    <div class="text"><button class="btn enter" onclick="calculate()">=</button></div>
+                    <div class="text"><button class="btn" value="/" onclick="basicOperator('/')">/</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="scripts/script.js"></script>
+</html>
